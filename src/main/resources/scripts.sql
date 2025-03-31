@@ -40,3 +40,10 @@ VALUES ('happy@example.com', '{noop}EazyBytes@12345', 'read');
 
 INSERT INTO customer (email, pwd, role)
 VALUES ('admin@example.com', '{bcrypt}$2a$12$88.f6upbBvy0okEa7OfHFuorV29qeK.sVbB9VQ6J6dWM1bW6Qef8m', 'admin');
+
+CREATE TABLE authorities (
+                             id SERIAL PRIMARY KEY,
+                             customer_id INT NOT NULL,
+                             name VARCHAR(50) NOT NULL,
+                             CONSTRAINT authorities_customer_fk FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
+);
